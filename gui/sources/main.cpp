@@ -1,12 +1,17 @@
-#include <QApplication>
-#include "b1mainwindow.h"
+#include <iostream>
+#include <SDL2/SDL.h>
 
-int main(int argc, char **argv) 
+int main(int argc, char **argv)
 {
-    QApplication app(argc, argv);
-    
-    b1MainWindow wnd;
-    wnd.show();
-    
-    return app.exec();
+    if (SDL_Init(SDL_INIT_VIDEO) != 0)
+    {
+        std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
+        return 1;
+    }
+
+    std::cout << "All Ok, proceed with SDL" << std::endl;
+
+    SDL_Quit();
+
+    return 0;
 }
